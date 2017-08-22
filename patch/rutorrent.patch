@@ -1,0 +1,60 @@
+--- css/style_old.css	2017-08-22 23:21:24.000000000 +0800
++++ css/style.css	2017-08-22 23:21:44.000000000 +0800
+@@ -204,7 +204,7 @@
+ div#dlgLabel div.content {width: 230px; margin: 5px; padding: 5px; line-height: 16px}
+ div#dlgLabel div.content input {margin-top: 5px}
+ #txtLabel {width: 200px}
+-div#padd {width: 250px; height: 120px}
++div#padd {width: 250px; height: 300px}
+ div#padd div.dlg-header {background-image: url(../images/props.gif)}
+ div#padd div.content {width: 230px; margin: 5px; padding: 5px; line-height: 16px}
+ div#padd div.content input {margin-top: 5px}
+
+
+--- js/content_old.js	2017-08-22 23:22:26.000000000 +0800
++++ js/content.js	2017-08-22 23:22:57.000000000 +0800
+@@ -83,7 +83,7 @@
+ 			try { eval(d.body.textContent ? d.body.textContent : d.body.innerText); } catch(e) {}
+ 	}));
+ 	theDialogManager.make("padd",theUILang.peerAdd,
+-		'<div class="content fxcaret">'+theUILang.peerAddLabel+'<br><input type="text" id="peerIP" class="Textbox" value="my.friend.addr:6881"/></div>'+
++		'<div class="content fxcaret">'+theUILang.peerAddLabel+'<br><textarea rows="12" cols="15" id="peerIP" class="Textbox" value="my.friend.addr:6881"/></div>'+
+ 		'<div class="aright buttons-list"><input type="button" class="OK Button" value="'+theUILang.ok+'" onclick="theWebUI.addNewPeer();theDialogManager.hide(\'padd\');return(false);" />'+
+ 			'<input type="button" class="Cancel Button" value="'+theUILang.Cancel+'"/></div>',
+ 		true);
+
+
+--- js/webui_old.js	2017-08-22 23:23:14.000000000 +0800
++++ js/webui.js	2017-08-22 23:24:32.000000000 +0800
+@@ -880,7 +880,11 @@
+ 
+ 	addNewPeer: function()
+ 	{
+-		this.request("?action=addpeer&hash="+this.dID+"&f="+encodeURIComponent($("#peerIP").val()), [this.updatePeers,this]);
++		var manualAddPeers = $("#peerIP").val().split("\n");
++		var localPeer = $.trim(manualAddPeers[i]).replace("：", ":");
++		for(var i in manualAddPeers) {
++			this.request("?action=addpeer&hash="+this.dID+"&f="+localPeer, [this.updatePeers,this]);
++		}
+ 	},
+ 
+ 	setPeerState: function(cmd)
+@@ -898,7 +902,7 @@
+ 		theContextMenu.add([theUILang.peerAdd, 
+ 			(this.dID && 
+ 				$type(this.torrents[this.dID]) && 
+-				(this.torrents[this.dID].private==0) && 
++				//(this.torrents[this.dID].private==0) && 
+ 				this.isTorrentCommandEnabled('addpeer',this.dID) &&
+ 				(theWebUI.systemInfo.rTorrent.iVersion>=0x804)) ? 
+ 			"theDialogManager.show('padd')"	: null]);
+@@ -1363,7 +1367,8 @@
+ 				(!this.isTorrentCommandEnabled("start",id) && 
+ 				this.isTorrentCommandEnabled("addpeer",id) && 
+ 				$type(this.torrents[id]) && 
+-				(this.torrents[id].private==0) && (theWebUI.systemInfo.rTorrent.iVersion>=0x804)) ? 
++				//(this.torrents[id].private==0) && 
++				(theWebUI.systemInfo.rTorrent.iVersion>=0x804)) ? 
+ 				"theDialogManager.show('padd')"	: null]);
+ 		}
+ 		theContextMenu.add([theUILang.Recreate_files, this.isTorrentCommandEnabled("recreate",id) ? "theWebUI.recreate()" : null]);
