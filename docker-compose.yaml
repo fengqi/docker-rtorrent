@@ -1,0 +1,11 @@
+version: "2"
+services:
+  rutorrent:
+    image: lyf362345/rutorrent
+    ports:
+      - "8090:8090"
+
+    volumes:
+      - "./conf:/app/conf"
+      - "./sessions:/app/sessions"
+      - "./downloads:/app/downloads"
