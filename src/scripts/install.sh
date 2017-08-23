@@ -41,6 +41,7 @@ chmod +x /etc/init.d/rtorrent
 tar -zxf ruTorrent-3.8.tar.gz
 patch -p0 -d ruTorrent-3.8/ < /opt/src/patch/rutorrent.patch
 mv /opt/src/ruTorrent-3.8 /usr/share/nginx/ruTorrent
+chown -R www-data:www-data /usr/share/nginx/ruTorrent
 
 # 配置 nginx
 cp /opt/src/scripts/rutorrent.conf /etc/nginx/sites-available
