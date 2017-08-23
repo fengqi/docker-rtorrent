@@ -1,5 +1,12 @@
-directory = "/app/downloads/"
-session ="/app/sessions/"
+# This is the rtorrent configuration file installed by rtinst script - https://github.com/arakasi72/rtinst
+# This file is installed to ~/.rtorrent.rc
+# Enable/modify the options as needed, uncomment the options you wish to enable.
+# This configuration will work well with most systems, but optimal settings are dependant on specific server setup
+
+
+directory ="/app/downloads/"
+session ="/app/.sessions/"
+schedule = watch_directory,5,5,load_start="/app/.watch/*.torrent"
 
 ### BitTorrent
 # Global upload and download rate in KiB, `0` for unlimited
@@ -19,14 +26,14 @@ throttle.min_peers.seed.set = -1
 throttle.max_peers.seed.set = -1
 
 ### Networking
-network.port_range.set = 50103-50103
+network.port_range.set = 60103-60103
 network.port_random.set = no
 dht.mode.set = disable
 protocol.pex.set = no
 trackers.use_udp.set = yes
 
 # network.scgi.open_port = localhost:5000
-network.scgi.open_port = 127.0.0.1:5000
+network.scgi.open_port = 127.0.0.1:8090
 network.http.ssl_verify_peer.set = 0
 protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
 
@@ -40,3 +47,10 @@ network.receive_buffer.size.set = 4M
 pieces.hash.on_completion.set = no
 pieces.preload.type.set = 1
 pieces.memory.max.set = 500M
+
+
+
+### The following line initialises rutorrent plugins without needing to open the web interface
+execute = {sh,-c,/usr/bin/php /usr/share/nginx/ruTorrent/php/initplugins.php root &}
+
+#EOF

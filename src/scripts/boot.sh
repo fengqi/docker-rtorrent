@@ -9,6 +9,7 @@ if [ ! -f "/app/conf/rutorrent.php" ];then
     cp /opt/src/scripts/rutorrent.php /app/conf/
 fi
 
+# 默认密码 123456
 if [ ! -f "/app/conf/httpPassword" ];then
     echo "admin:zOfptPkebiKR." > /app/conf/httpPassword
 fi
