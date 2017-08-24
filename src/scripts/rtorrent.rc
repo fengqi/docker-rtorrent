@@ -26,6 +26,7 @@ throttle.min_peers.seed.set = -1
 throttle.max_peers.seed.set = -1
 
 ### Networking
+network.bind_address.set = 0.0.0.0
 network.port_range.set = 60103-60103
 network.port_random.set = no
 dht.mode.set = disable
