@@ -5,8 +5,8 @@
 
 
 directory ="/app/downloads/"
-session ="/app/.sessions/"
-schedule = watch_directory,5,5,load_start="/app/.watch/*.torrent"
+session ="/app/sessions/"
+schedule = watch_directory,5,5,load_start="/app/watch/*.torrent"
 
 ### BitTorrent
 # Global upload and download rate in KiB, `0` for unlimited
@@ -33,7 +33,7 @@ protocol.pex.set = no
 trackers.use_udp.set = yes
 
 # network.scgi.open_port = localhost:5000
-network.scgi.open_port = 127.0.0.1:8090
+network.scgi.open_port = 127.0.0.1:5000
 network.http.ssl_verify_peer.set = 0
 protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
 
