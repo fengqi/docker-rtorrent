@@ -42,6 +42,8 @@ tar -zxf ruTorrent-3.8.tar.gz
 patch -p0 -d ruTorrent-3.8/ < /opt/src/patch/rutorrent.patch
 mv /opt/src/ruTorrent-3.8 /usr/share/nginx/ruTorrent
 chown -R www-data:www-data /usr/share/nginx/ruTorrent
+sed -i "s/^post_max_size.*$/post_max_size = 100M/" /etc/php5/fpm/php.ini
+sed -i "s/^upload_max_filesize.*$/upload_max_filesize = 100M/" /etc/php5/fpm/php.ini
 
 # 配置 nginx
 cp /opt/src/scripts/rutorrent.conf /etc/nginx/sites-available
