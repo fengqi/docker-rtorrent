@@ -30,7 +30,7 @@ network.bind_address.set = 0.0.0.0
 network.port_range.set = 60103-60103
 network.port_random.set = no
 dht.mode.set = disable
-protocol.pex.set = no
+protocol.pex.set = yes
 trackers.use_udp.set = yes
 
 # network.scgi.open_port = localhost:5000
