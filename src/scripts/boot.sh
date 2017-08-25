@@ -19,6 +19,10 @@ cp -f /app/conf/rtorrent.rc /root/.rtorrent.rc
 cp -f /app/conf/rutorrent.php /usr/share/nginx/ruTorrent/conf/config.php
 cp -f /app/conf/httpPassword /etc/nginx/httpPassword
 
+# 权限修正
+chmod 644 /etc/nginx/httpPassword /root/.rtorrent.rc /usr/share/nginx/ruTorrent/conf/config.php
+chmod -R 777 /app/*
+
 # 解锁
 rm -rf /app/sessions/rtorrent.lock
 
