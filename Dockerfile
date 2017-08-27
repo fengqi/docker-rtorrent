@@ -1,15 +1,10 @@
 FROM ubuntu:14.04
 
-ADD src /opt/src/
-RUN chmod +x /opt/src/scripts/* && \
-	/opt/src/scripts/install.sh
+ADD src /opt
+RUN chmod +x /opt/scripts/* && \
+	/opt/scripts/install.sh
 
-EXPOSE 8090
-EXPOSE 60103
+EXPOSE 8090 60103
+VOLUME ["/app/sessions", "/app/downloads", "/app/conf", "/app/watch"]
 
-VOLUME /app/sessions/
-VOLUME /app/downloads/
-VOLUME /app/conf/
-VOLUME /app/watch/
-
-CMD sh /opt/src/scripts/boot.sh
+CMD sh /opt/scripts/boot.sh

@@ -2,11 +2,11 @@
 
 # 默认配置文件
 if [ ! -f "/app/conf/rtorrent.rc" ];then
-    cp /opt/src/scripts/rtorrent.rc /app/conf/
+    cp /opt/conf/rtorrent.rc /app/conf/
 fi
 
 if [ ! -f "/app/conf/rutorrent.php" ];then
-    cp /opt/src/scripts/rutorrent.php /app/conf/
+    cp /opt/conf/rutorrent.php /app/conf/
 fi
 
 # 默认密码 123456
