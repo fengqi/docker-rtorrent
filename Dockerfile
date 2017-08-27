@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM alpine:3.6
 
 ADD src /opt
 RUN chmod +x /opt/scripts/* && \
