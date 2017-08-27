@@ -9,7 +9,7 @@ apt-get update && \
 apt-get -y --no-install-recommends install libtool libxmlrpc-c++8-dev \
 		libsigc++-2.0-dev libcppunit-dev libncurses5-dev libcurl4-openssl-dev \
 		libcrypto++-dev libssl-dev g++ automake autoconf make nginx php5-fpm \
-		php5-cli curl screen wget patch
+		php5-cli curl screen wget patch ca-certificates
 
 # 下载源码, 非最新版本
 cd /opt
