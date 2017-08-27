@@ -28,5 +28,5 @@ rm -rf /app/sessions/rtorrent.lock
 
 # 启动程序
 /etc/init.d/php5-fpm start
-/etc/init.d/rtorrent start
-/usr/sbin/nginx -g "daemon off;"
+/etc/init.d/nginx start
+/usr/bin/rtorrent
