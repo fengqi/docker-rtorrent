@@ -10,11 +10,17 @@ pkgdesc="Ncurses BitTorrent client based on libTorrent"
 url="http://rakshasa.github.io/rtorrent/"
 license="GPL"
 arch="all"
-makedepends="libsigc++-dev libtorrent-dev curl-dev xmlrpc-c-dev ncurses-dev"
+makedepends="libsigc++-dev curl-dev xmlrpc-c-dev ncurses-dev libressl-dev"
 subpackages="$pkgname-doc"
 source="https://tools.fengqi.me/$pkgname-$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
 
+prepare() {
+	cd "$builddir"
+	update_config_sub || return 1
+	patch -p0 -i /opt/patch/rtorrent.patch  || return 1	
+}
+ 
 build() {
 	cd "$builddir"
 	./configure \

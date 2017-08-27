@@ -12,8 +12,13 @@ license="GPL"
 makedepends="zlib-dev libsigc++-dev libressl-dev"
 subpackages="$pkgname-dev"
 options="libtool"
-source="https://tools.fengqi.me/$pkgname-$pkgver.tar.gz"
+source="http://rtorrent.net/downloads/$pkgname-$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
+
+prepare() {
+	cd "$builddir"
+	patch -p0 -i /opt/patch/libtorrent.patch  || return 1	
+}
 
 build() {
 	cd "$builddir"
@@ -32,7 +37,3 @@ package() {
 	cd "$builddir"
 	make DESTDIR="$pkgdir" install || return 1
 }
-
-md5sums="e82f380a9d4b55b379e0e73339c73895  libtorrent-0.13.4.tar.gz"
-sha256sums="704e097119dc89e2ee4630396b25de1cd64b0549841347ea75b9ef9217084955  libtorrent-0.13.4.tar.gz"
-sha512sums="6a5ea944c1193d1160563828c5901f0cf557f38c4de61153d505344f3c3c8509c765e01b6cc5e3a53ec2bb184a9e8db32ed4ec154e93a93822804210f0fa45d0  libtorrent-0.13.4.tar.gz"
