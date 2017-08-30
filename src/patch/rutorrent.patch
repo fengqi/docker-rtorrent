@@ -58,3 +58,14 @@
  				"theDialogManager.show('padd')"	: null]);
  		}
  		theContextMenu.add([theUILang.Recreate_files, this.isTorrentCommandEnabled("recreate",id) ? "theWebUI.recreate()" : null]);
+--- js/common_old.js	2017-08-30 10:47:36.000000000 +0800
++++ js/common.js	2017-08-30 10:48:47.000000000 +0800
+@@ -353,7 +353,7 @@
+ 	GetSettingsURL		: "php/getsettings.php",
+ 	GetPluginsURL		: "php/getplugins.php",
+ 	GetDonePluginsURL	: "php/doneplugins.php",
+-	RIPEURL			: "https://apps.db.ripe.net/search/query.html?searchtext="
++	RIPEURL			: "http://www.ip138.com/ips1388.asp?action=2&ip="
+ };
+ 
+ var theOptionsSwitcher =
