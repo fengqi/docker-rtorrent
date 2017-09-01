@@ -69,3 +69,45 @@
  };
  
  var theOptionsSwitcher =
+--- plugins/geoip/lookup_old.php	2017-06-15 18:02:38.000000000 +0800
++++ plugins/geoip/lookup.php	2017-09-01 21:38:36.000000000 +0800
+@@ -2,6 +2,7 @@
+ 	set_time_limit(0);
+ 	require_once( '../../php/util.php' );
+ 	require_once( "sqlite.php" );
++	require_once( "qqwry.php" );
+ 	eval( getPluginConf( 'geoip' ) );
+ 
+ 	function isValidCode( $country )
+@@ -72,7 +73,7 @@
+ 					else
+ 						$country = "un";
+ 					if(!empty($city))
+-                                               $country.=" (".implode(', ',$city).")";
++                                               //$country.=" (".implode(', ',$city).")";
+ 					$host = $value;
+                                         if($retrieveHost)
+                                         {
+@@ -101,6 +102,15 @@
+         					$db = new ipDB();
+         					$comment = $db->get($value);
+                                         }
++                    $qqwry = new qqwry('./qqwry.dat');
++                    $ipinfo = $qqwry->query($value);
++                    $city = '';
++                    if ($ipinfo) {
++                        foreach($ipinfo as $item) {
++                            $city .= iconv('gbk', 'utf-8//ignore', $item);
++                        }
++                        $country = '('.trim(str_replace('CZ88.NET', '', $country)).')';
++                    }
+ 					$ret[] = array( "ip"=>$value, "info"=>array( "country"=>$country, "host"=>$host, "comment"=>$comment ) );
+ 				}
+ 			}
+@@ -153,4 +163,4 @@
+ 		}
+ 	}
+ 	cachedEcho(safe_json_encode($ret),"application/json");
+-	
+\ No newline at end of file
++	

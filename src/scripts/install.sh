@@ -9,7 +9,7 @@ apt-get update && \
 apt-get -y --no-install-recommends install libtool libxmlrpc-c++8-dev \
 		libsigc++-2.0-dev libcppunit-dev libncurses5-dev libcurl4-openssl-dev \
 		libcrypto++-dev libssl-dev g++ automake autoconf make nginx php5-fpm \
-		php5-cli curl screen wget patch ca-certificates
+		php5-cli php5-geoip geoip-database curl screen wget patch ca-certificates
 
 # 下载源码, 非最新版本
 cd /opt
@@ -42,11 +42,14 @@ chmod +x /etc/init.d/rtorrent
 cd /opt
 tar -zxf ruTorrent-3.8.tar.gz
 patch -p0 -d ruTorrent-3.8/ < /opt/patch/rutorrent.patch
-mv /opt/ruTorrent-3.8 /usr/share/nginx/ruTorrent
-chown -R www-data:www-data /usr/share/nginx/ruTorrent
+mkdir -p /app/share;mv /opt/ruTorrent-3.8 /app/ruTorrent
+chown -R www-data:www-data /app/ruTorrent /app/share
 sed -i "s/^post_max_size.*$/post_max_size = 100M/" /etc/php5/fpm/php.ini
 sed -i "s/^upload_max_filesize.*$/upload_max_filesize = 100M/" /etc/php5/fpm/php.ini
 sed -i "s/^max_execution_time.*$/max_execution_time = 300/" /etc/php5/fpm/php.ini
+
+# 配置 geoip
+cp -r /opt/patch/qqwry.* /app/ruTorrent/plugins/geoip/
 
 # 配置 nginx
 cp /opt/conf/rutorrent.conf /etc/nginx/sites-available
@@ -62,6 +65,6 @@ rm -rf /opt/ruTorrent-*
 rm -rf /opt/rtorrent-*
 
 # 运行时目录
-mkdir -p /app/conf
+mkdir /app/conf
 mkdir /app/sessions
 mkdir /app/downloads

@@ -16,12 +16,11 @@ fi
 
 # 每次运行都是用用户配置覆盖
 cp -f /app/conf/rtorrent.rc /root/.rtorrent.rc
-cp -f /app/conf/rutorrent.php /usr/share/nginx/ruTorrent/conf/config.php
+cp -f /app/conf/rutorrent.php /app/ruTorrent/conf/config.php
 cp -f /app/conf/httpPassword /etc/nginx/httpPassword
 
 # 权限修正
-chmod 644 /etc/nginx/httpPassword /root/.rtorrent.rc /usr/share/nginx/ruTorrent/conf/config.php
-chmod -R 777 /app/*
+chmod 644 /etc/nginx/httpPassword /root/.rtorrent.rc /app/ruTorrent/conf/config.php
 
 # 解锁
 rm -rf /app/sessions/rtorrent.lock
