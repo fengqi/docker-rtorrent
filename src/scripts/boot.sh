@@ -21,6 +21,7 @@ cp -f /app/conf/httpPassword /etc/nginx/httpPassword
 
 # 权限修正
 chmod 644 /etc/nginx/httpPassword /root/.rtorrent.rc /app/ruTorrent/conf/config.php
+chmod -R 777 /app/*
 
 # 解锁
 rm -rf /app/sessions/rtorrent.lock
