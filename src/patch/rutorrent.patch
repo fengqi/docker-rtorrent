@@ -71,8 +71,8 @@
  var theOptionsSwitcher =
 
 
---- plugins/geoip/lookup_old.php	2017-06-15 18:02:38.000000000 +0800
-+++ plugins/geoip/lookup.php	2017-09-01 21:38:36.000000000 +0800
+--- plugins/geoip/lookup_old.php	2017-09-02 23:48:09.000000000 +0800
++++ plugins/geoip/lookup.php	2017-09-02 23:49:42.000000000 +0800
 @@ -2,6 +2,7 @@
  	set_time_limit(0);
  	require_once( '../../php/util.php' );
@@ -90,10 +90,11 @@
  					$host = $value;
                                          if($retrieveHost)
                                          {
-@@ -101,6 +102,15 @@
+@@ -101,7 +102,16 @@
          					$db = new ipDB();
          					$comment = $db->get($value);
                                          }
+-					$ret[] = array( "ip"=>$value, "info"=>array( "country"=>$country, "host"=>$host, "comment"=>$comment ) );
 +                    $qqwry = new qqwry('./qqwry.dat');
 +                    $ipinfo = $qqwry->query($value);
 +                    $city = '';
@@ -101,11 +102,12 @@
 +                        foreach($ipinfo as $item) {
 +                            $city .= iconv('gbk', 'utf-8//ignore', $item);
 +                        }
-+                        $country = '('.trim(str_replace('CZ88.NET', '', $country)).')';
++                        $country .= '('.trim(str_replace('CZ88.NET', '', $city)).')';
 +                    }
- 					$ret[] = array( "ip"=>$value, "info"=>array( "country"=>$country, "host"=>$host, "comment"=>$comment ) );
++					$ret[] = array( "ip"=>$value, "info"=>array( "country"=>$country, "host"=>$value, "comment"=>$comment ) );
  				}
  			}
+ 		}
 @@ -153,4 +163,4 @@
  		}
  	}
