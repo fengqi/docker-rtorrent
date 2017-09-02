@@ -69,6 +69,8 @@
  };
  
  var theOptionsSwitcher =
+
+
 --- plugins/geoip/lookup_old.php	2017-06-15 18:02:38.000000000 +0800
 +++ plugins/geoip/lookup.php	2017-09-01 21:38:36.000000000 +0800
 @@ -2,6 +2,7 @@
@@ -111,3 +113,23 @@
 -	
 \ No newline at end of file
 +	
+
+
+--- plugins/geoip/conf_bak.php	2017-09-02 08:52:42.000000000 +0800
++++ plugins/geoip/conf.php	2017-09-02 08:53:18.000000000 +0800
+@@ -2,10 +2,10 @@
+ 	// configuration parameters
+ 
+ 	$retrieveCountry = true;
+-	$retrieveHost = true;
+-	$retrieveComments = true;
++	$retrieveHost = false;
++	$retrieveComments = false;
+ 
+ 	// For retrieve hosts
+ 
+-	$dnsResolver = '8.8.8.8';	// use gethostbyaddr, if null
+-	$dnsResolverTimeout = 1;	// timeout in seconds
+\ No newline at end of file
++	$dnsResolver = '114.114.114.114';	// use gethostbyaddr, if null
++	$dnsResolverTimeout = 2;	// timeout in seconds
