@@ -19,7 +19,7 @@
 	$schedule_rand = 10;			// rand for schedulers start, +0..X seconds
 
 	$do_diagnostic = true;
-	$log_file = '/tmp/rutorrent_errors.log';		// path to log file (comment or leave blank to disable logging)
+	$log_file = '';		// path to log file (comment or leave blank to disable logging)
 
 	$saveUploadedTorrents = true;		// Save uploaded torrents to profile/torrents directory or not
 	$overwriteUploadedTorrents = false;     // Overwrite existing uploaded torrents in profile/torrents directory or make unique name
@@ -27,15 +27,15 @@
 	$topDirectory = '/app';			// Upper available directory. Absolute path with trail slash.
 	$forbidUserSettings = false;
 
-	$scgi_port = 6000;
-	$scgi_host = "127.0.0.1";
+	//$scgi_port = 6000;
+	//$scgi_host = "127.0.0.1";
 
 	// For web->rtorrent link through unix domain socket
 	// (scgi_local in rtorrent conf file), change variables
 	// above to something like this:
 	//
-	// $scgi_port = 0;
-	// $scgi_host = "unix:///tmp/rpc.socket";
+	$scgi_port = 0;
+	$scgi_host = "unix:///run/rtorrent.sock";
 
 	$XMLRPCMountPoint = "/RPC2";		// DO NOT DELETE THIS LINE!!! DO NOT COMMENT THIS LINE!!!
 
