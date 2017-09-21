@@ -35,15 +35,12 @@ cd rtorrent-0.9.4
 ./configure --prefix=/usr --with-xmlrpc-c && \
 make && \
 make install
-cp /opt/scripts/rtorrent.sh /etc/init.d/rtorrent
-chmod +x /etc/init.d/rtorrent
 
 # 安装 rutorrent
 cd /opt
 tar -zxf ruTorrent-3.8.tar.gz
 patch -p0 -d ruTorrent-3.8/ < /opt/patch/rutorrent.patch
 mkdir -p /app/share;mv /opt/ruTorrent-3.8 /app/ruTorrent
-chown -R www-data:www-data /app/ruTorrent /app/share
 sed -i "s/^post_max_size.*$/post_max_size = 100M/" /etc/php5/fpm/php.ini
 sed -i "s/^upload_max_filesize.*$/upload_max_filesize = 100M/" /etc/php5/fpm/php.ini
 sed -i "s/^max_execution_time.*$/max_execution_time = 300/" /etc/php5/fpm/php.ini
