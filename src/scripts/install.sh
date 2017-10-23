@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # 切换国内源
-sed -i 's/archive.ubuntu/cn.archive.ubuntu/g' /etc/apt/sources.list
-sed -i 's/security.ubuntu/cn.archive.ubuntu/g' /etc/apt/sources.list
+#sed -i 's/archive.ubuntu/cn.archive.ubuntu/g' /etc/apt/sources.list
+#sed -i 's/security.ubuntu/cn.archive.ubuntu/g' /etc/apt/sources.list
 
 # 安装依赖包
 apt-get update && \
