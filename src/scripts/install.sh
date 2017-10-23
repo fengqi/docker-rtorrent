@@ -7,17 +7,28 @@ sed -i 's/security.ubuntu/cn.archive.ubuntu/g' /etc/apt/sources.list
 # 安装依赖包
 apt-get update && \
 apt-get -y --no-install-recommends install libtool libxmlrpc-c++8-dev \
-		libsigc++-2.0-dev libcppunit-dev libncurses5-dev libcurl4-openssl-dev \
+		libsigc++-2.0-dev libcppunit-dev libncurses5-dev libc-ares-dev\
 		libcrypto++-dev libssl-dev g++ automake autoconf make nginx php5-fpm \
-		php5-cli php5-geoip geoip-database curl screen wget patch ca-certificates
+		php5-cli php5-geoip geoip-database screen wget patch ca-certificates \
+		unrar unzip
 
 # 下载源码, 非最新版本
 cd /opt
+wget -c --no-check-certificate https://curl.haxx.se/download/curl-7.56.0.tar.gz && \
 wget -c --no-check-certificate https://tools.fengqi.me/libtorrent-0.13.4.tar.gz && \
 wget -c --no-check-certificate https://tools.fengqi.me/rtorrent-0.9.4.tar.gz && \
 wget -c --no-check-certificate https://tools.fengqi.me/ruTorrent-3.8.tar.gz
 
+# 编译安装 curl, 启用 c-ares
+cd /opt
+tar -zxf curl-7.56.0.tar.gz
+cd curl-7.56.0
+./configure --enable-ares && \
+make && \
+make install
+
 # 编译安装 libtorrent
+cd /opt
 tar -zxf libtorrent-0.13.4.tar.gz
 patch -p0 -d libtorrent-0.13.4/ < /opt/patch/libtorrent.patch
 cd libtorrent-0.13.4
@@ -40,7 +51,7 @@ make install
 cd /opt
 tar -zxf ruTorrent-3.8.tar.gz
 patch -p0 -d ruTorrent-3.8/ < /opt/patch/rutorrent.patch
-mkdir -p /app/share;mv /opt/ruTorrent-3.8 /app/ruTorrent
+mv /opt/ruTorrent-3.8 /app/ruTorrent
 sed -i "s/^post_max_size.*$/post_max_size = 100M/" /etc/php5/fpm/php.ini
 sed -i "s/^upload_max_filesize.*$/upload_max_filesize = 100M/" /etc/php5/fpm/php.ini
 sed -i "s/^max_execution_time.*$/max_execution_time = 300/" /etc/php5/fpm/php.ini
@@ -60,8 +71,11 @@ rm -rf /var/lib/apt/lists/*
 rm -rf /opt/libtorrent-*
 rm -rf /opt/ruTorrent-*
 rm -rf /opt/rtorrent-*
+rm -rf /opt/curl-*
 
 # 运行时目录
 mkdir /app/conf
+mkdir /app/watch
+mkdir /app/share
 mkdir /app/sessions
 mkdir /app/downloads
