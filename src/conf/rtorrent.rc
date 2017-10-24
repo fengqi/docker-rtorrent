@@ -33,7 +33,7 @@ network.bind_address.set = 0.0.0.0
 #network.local_address.set = "ddns.home.com"
 network.port_range.set = 60103-60103
 network.port_random.set = no
-network.http.dns_cache_timeout.set = 25
+network.http.dns_cache_timeout.set = 0
 dht.mode.set = auto
 protocol.pex.set = yes
 trackers.use_udp.set = yes
@@ -46,7 +46,7 @@ protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
 
 network.max_open_files.set = 4096
 network.max_open_sockets.set = 1536
-network.http.max_open.set = 48
+network.http.max_open.set = 256
 network.send_buffer.size.set = 4M
 network.receive_buffer.size.set = 4M
 
