@@ -65,7 +65,7 @@
  	GetPluginsURL		: "php/getplugins.php",
  	GetDonePluginsURL	: "php/doneplugins.php",
 -	RIPEURL			: "https://apps.db.ripe.net/search/query.html?searchtext="
-+	RIPEURL			: "http://www.ip138.com/ips1388.asp?action=2&ip="
++	RIPEURL			: "http://www.cip.cc/"
  };
  
  var theOptionsSwitcher =
