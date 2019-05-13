@@ -95,3 +95,4 @@ mkdir /app/watch
 mkdir /app/share
 mkdir /app/sessions
 mkdir /app/downloads
+mkdir /run/php
