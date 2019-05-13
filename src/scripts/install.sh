@@ -19,9 +19,9 @@ dpkg-reconfigure --frontend noninteractive tzdata
 # 下载源码, 非最新版本
 cd /opt
 wget -c --no-check-certificate https://curl.haxx.se/download/curl-7.64.1.tar.gz && \
-wget -c --no-check-certificate https://tools.fengqi.me/libtorrent-0.13.4.tar.gz && \
-wget -c --no-check-certificate https://tools.fengqi.me/rtorrent-0.9.4.tar.gz && \
-wget -c --no-check-certificate https://tools.fengqi.me/ruTorrent-3.8.tar.gz
+wget -c --no-check-certificate http://rtorrent.net/downloads/libtorrent-0.13.4.tar.gz && \
+wget -c --no-check-certificate http://rtorrent.net/downloads/rtorrent-0.9.4.tar.gz && \
+wget -c --no-check-certificate https://github.com/Novik/ruTorrent/archive/v3.8.tar.gz -O ruTorrent-3.8.tar.gz
 
 # 编译安装 curl, 启用 c-ares
 cd /opt
