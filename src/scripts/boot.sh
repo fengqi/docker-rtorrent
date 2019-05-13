@@ -26,6 +26,6 @@ chmod -R 777 /app/*
 rm -rf /app/sessions/rtorrent.lock
 
 # 启动程序
-/etc/init.d/php5-fpm start
-/etc/init.d/nginx start
+/etc/init.d/php7.0-fpm restart
+/etc/init.d/nginx restart
 /usr/bin/rtorrent
